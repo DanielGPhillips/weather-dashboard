@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Weather Dashboard</title>
+        <meta name="description" content="A simple weather dashboard.">
+        <link rel="stylesheet" type="text/css" href="./css/theme.css">
+        <link type="text/css" rel="stylesheet" href="./css/materialize.css"  media="screen,projection"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./js/index.js"></script>
+    </head>
+    <body>
+        <nav id="top-header">
+            <div class="nav-wrapper blue darken-4 text-white">
+                <a href="#" class="brand-logo center">Weather Dashboard</a>
+            </div>
+        </nav>
+        
+        <main>
+            <div class="row">
+                <div class="col s2">
+                    <div class="section" id="search-area">
+                        <div class="row">
+                            <form>
+                                <div class="col s12">
+                                    <label for="city-search" id="city-search-label">
+                                        <h5><b>Search for a City:</b></h5>
+                                    </label>
+                                    <input type="text" id="city-search" class="form-control" placeholder=""/>                                    
+                                </div>
+                                <div class="col s12 center-align">
+                                    <button type="submit" id="search-button" class="btn btn-block waves-effect waves-light">
+                                        Search
+                                        <i class="material-icons right">search</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="section" id="search-history">
+
+                    </div>                    
+                </div>
+                <div class="col s10">
+                    <div class="row">
+                        <div class="col s12" id="current-weather">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">
+                                        <h4 id="city-name">City Name</h4>
+                                        <img class="weather-icon" alt="weather-icon" src="">
+                                    </span>
+                                    <div class="temp"></div>
+                                    <div class="wind-speed"></div>
+                                    <div class="humidity"></div>
+                                    <div id="uv-index"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div id="forecast" class="row">
+                            <h4 class="forecast-title">5 Day Forecast:</h4>
+                            <div class="col s2 forecast-day">
+                                <h6></h6>
+                                <img class="weather-icon" src="">
+                                <p class="temp"></p>
+                                <p class="wind-speed"></p>
+                                <p class="humidity"></p>
+                            </div>
+                            <div class="col s2 forecast-day">
+                                <h6></h6>
+                                <img class="weather-icon" src="">
+                                <p class="temp"></p>
+                                <p class="wind-speed"></p>
+                                <p class="humidity"></p>
+                            </div> 
+                            <div class="col s2 forecast-day">
+                                <h6></h6>
+                                <img class="weather-icon" src="">
+                                <p class="temp"></p>
+                                <p class="wind-speed"></p>
+                                <p class="humidity"></p>
+                            </div> 
+                            <div class="col s2 forecast-day">
+                                <h6></h6>
+                                <img class="weather-icon" src="">
+                                <p class="temp"></p>
+                                <p class="wind-speed"></p>
+                                <p class="humidity"></p>
+                            </div> 
+                            <div class="col s2 forecast-day">
+                                <h6></h6>
+                                <img class="weather-icon" src="">
+                                <p class="temp"></p>
+                                <p class="wind-speed"></p>
+                                <p class="humidity"></p>
+                            </div>  
+                        </div>
+                    </div>                    
+                </div>  
+            </div>  
+        </main>
+
+        <script type="text/javascript" src="./js/materialize.js"></script>
+        <script type="text/javascript" src="./js/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    </body>
+</html>
