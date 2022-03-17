@@ -1,60 +1,58 @@
-let citySearchEl = $("form");
-const searchBar = $("input");
-const historySection = $("search-history");
-const errorMessage = $("error-message");
-const currentWeatherSection = $("current-weather");
-const forecastSection = $("forecast");
-const forecastDay = $("forecast-day");
-const forecastTitle = $("#forecast-title")  
+var citySearchEl = $("form");
+var searchBar = $("input");
+var historySection = $("#search-history");
+var errorMessage = $("#error-message");
+var currentWeatherSection = $("#current-weather");
+var forecastSection = $("forecast");
+var forecastDay = $(".forecast-day");
+var forecastTitle = $("#forecast-title")  
 
-const searchHistory = [];
-    
-const APIKey = "127bf0cad72cf425e225148de2f91f52";
+var searchHistory = [];
 
 function initializePage() {
-    const storedSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
+    var storedSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
 
     if (storedSearchHistory !== null){
         searchHistory = storedSearchHistory;
         for (var i = 0; i < searchHistory.length; i++){
-            const newButton = $("<button>");
+            var newButton = $("<button>");
             newButton.text(searchHistory[i]);
-            newButton.addClass("btn blue lighten-4 waves-effect waves-dark");
+            newButton.addClass("btn btn-block blue lighten-4 waves-effect waves-dark");
             historySection.append(newButton);
         }
     }
 }
 
 function getWeather(cityName){
-    const currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid="+ APIKey;
-    const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=" + APIKey;    
-    let validCity = false;
+    var currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=127bf0cad72cf425e225148de2f91f52";
+    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=127bf0cad72cf425e225148de2f91f52";    
+    var validCity = false;
 
     fetch(currentWeatherUrl)
     .then(function(res){
         if (res.ok){
             validCity = true;
-            addtoHistory(cityName);
+            addtoSearchHistory(cityName);
         }
-        return res.json();
+        return data = res.json();
     })
     .then(function(data){
         if (validCity) {
-            currentWeatherSection.children("#city-name").text(city + ", " + moment.unix(data.dt).format("MMM Do, YYYY") + " (date at user's location)");
+            currentWeatherSection.children("#city-name").text(cityName + "  " + moment.unix(data.dt).format("MMM Do, YYYY") );
             currentWeatherSection.children(".weather-icon").attr("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
             currentWeatherSection.children(".temp").text("Temp: " + data.main.temp + " °F");
             currentWeatherSection.children(".wind-speed").text("Wind: " + data.wind.speed + " MPH" );
             currentWeatherSection.children(".humidity").text("Humidity: " + data.main.humidity + "%");
 
-            const oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&appid="+ APIKey;
+            var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&appid=127bf0cad72cf425e225148de2f91f52";
 
             fetch(oneCallUrl)
             .then(function(res){
-                return res.json();
+                return data = res.json();
             })
             .then(function(data){
-                const uviEl = currentWeather.children("#uv-index");
-                const uvi = data.current.uvi
+                var uviEl = currentWeatherSection.children("#uv-index");
+                var uvi = data.current.uvi
                 uviEl.text("UV index: " + uvi);
                 if (uvi < 3){
                     uviEl.css("background-color", "green");
@@ -66,7 +64,7 @@ function getWeather(cityName){
                     uviEl.css("background-color", "red");
                     uviEl.css("color", "white");
                 }
-                currentEl.css("display", "block");
+                currentWeatherSection.css("display", "block");
             })
         } else {
             errorEl.css("display", "block");
@@ -74,7 +72,7 @@ function getWeather(cityName){
     });
     fetch(forecastUrl)
     .then(function(res){
-        return res.json();
+        return data = res.json();
     })
     .then(function(data){
         if (validCity){
@@ -83,10 +81,10 @@ function getWeather(cityName){
             
             for (var i = 7; i < dataList.length; i += 8){
                 var dayWeather = dataList[i];
-                var day = $(forecastSection[dayIndex]);
+                var day = $(forecastDay[dayIndex]);
                 dayIndex++;
     
-                day.children("h5").text(moment.unix(dayWeather.dt).format("MMM Do, YYYY"));
+                day.children("h6").text(moment.unix(dayWeather.dt).format("MMM Do, YYYY"));
                 day.children(".weather-icon").attr("src", "http://openweathermap.org/img/wn/" + dayWeather.weather[0].icon + "@2x.png");
                 day.children(".temp").text("Temp: " + dayWeather.main.temp + " °F");
                 day.children(".wind-speed").text("Wind: " + dayWeather.wind.speed + " MPH");
@@ -100,7 +98,7 @@ function getWeather(cityName){
     });
 }
 
-function addSearchToHistory(search){
+function addtoSearchHistory(search){
     for (var i = 0; i < searchHistory.length; i++){
         if (search === searchHistory[i]){
             return;
@@ -110,7 +108,7 @@ function addSearchToHistory(search){
     
     var newButton = $("<button>");
     newButton.text(search);
-    newButton.addClass("btn blue lighten-4 waves-effect waves-dark");
+    newButton.addClass("btn btn-block blue lighten-4 waves-effect waves-dark");
     historySection.prepend(newButton);
 
     if (searchHistory.length > 8){
